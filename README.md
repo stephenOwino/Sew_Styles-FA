@@ -43,3 +43,109 @@ Sew Styles is a web application designed to connect users with tailors in Kenya.
    git clone https://github.com/stephenOwino/Sew_Styles-FA.git
    cd Sew_Styles-FA
    ```
+
+Install Dependencies
+
+Using npm:
+
+bash
+Copy code
+npm install
+Or using yarn:
+
+bash
+Copy code
+yarn install
+Start the Development Server
+
+Using npm:
+
+bash
+Copy code
+npm run dev
+Or using yarn:
+
+bash
+Copy code
+yarn dev
+The development server will start and the application will be available at http://localhost:5173.
+
+Build the Application for Production
+
+To create a production build:
+
+Using npm:
+
+bash
+Copy code
+npm run build
+Or using yarn:
+
+bash
+Copy code
+yarn build
+The static files will be generated in the dist directory.
+
+Preview the Production Build
+
+To preview the production build locally:
+
+Using npm:
+
+bash
+Copy code
+npm run preview
+Or using yarn:
+
+bash
+Copy code
+yarn preview
+Testing
+To run tests using Jest:
+
+Using npm:
+
+bash
+Copy code
+npm test
+Or using yarn:
+
+bash
+Copy code
+yarn test
+Linting
+To check code quality with ESLint:
+
+Using npm:
+
+bash
+Copy code
+npm run lint
+Or using yarn:
+
+bash
+Copy code
+yarn lint
+Dependencies
+Vite: Build tool.
+React: JavaScript library for building user interfaces.
+Tailwind CSS: Utility-first CSS framework.
+Heroicons: Icon library.
+React Toastify: Toast notifications.
+Formik: Form management.
+Axios: HTTP client.
+React Router DOM: Routing.
+React Leaflet: Map integration.
+Socket.io: Real-time communication.
+Jest: Testing framework.
+React Testing Library: Testing utilities for React.
+Contributing
+Contributions are welcome! Please open an issue or submit a pull request.
+
+## License
+
+Contact
+For any inquiries, please reach out to
+EMAIL:Stephenowin233@gmail.com
++254114825652
+Stephen Otieno Owino
