@@ -16,3 +16,30 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+# Sew Styles
+
+Sew Styles is a web application designed to connect users with tailors in Kenya. The platform allows users to browse and like clothing items, interact with tailors, and more.
+
+## Features
+
+- **User Interface**: Built with React and styled using Tailwind CSS.
+- **Map Integration**: Displays user locations using React Leaflet.
+- **Real-time Communication**: Integrated with Socket.io for chat functionality.
+- **Form Handling**: Utilizes Formik for form management and validation.
+- **HTTP Requests**: Axios is used for making HTTP requests.
+- **Testing**: Jest and React Testing Library are used for testing.
+
+## Prerequisites
+
+- **Node.js**: v22.x (or higher)
+- **npm** or **yarn**: Package managers to manage dependencies.
+
+## Installation
+
+1. **Clone the Repository**
+
+   ```bash
+   git clone https://github.com/stephenOwino/Sew_Styles-FA.git
+   cd Sew_Styles-FA
+   ```
