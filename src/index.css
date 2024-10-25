@@ -1,3 +1,51 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Testimonial container */
+.testimonial-container {
+	overflow: hidden;
+	width: 100%;
+	position: relative;
+	background: linear-gradient(90deg, black, grey); /* Black to grey gradient */
+	padding: 20px;
+}
+
+/* Row of testimonials */
+.testimonial-row {
+	display: flex;
+	animation: scroll 20s linear infinite;
+	transition: transform 0.5s ease-in-out;
+}
+
+/* Each testimonial card */
+.testimonial-card {
+	min-width: 300px;
+	margin-right: 20px;
+	background-color: rgba(14, 12, 12, 0.1); /* Slightly transparent background */
+	padding: 1rem;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+	transition: transform 0.2s ease-in-out;
+}
+
+/* Pause animation on hover */
+.testimonial-container:hover .testimonial-row {
+	animation-play-state: paused; /* Stops scrolling when hovered */
+}
+
+/* Add a subtle zoom-in effect on hover for readability */
+.testimonial-card:hover {
+	transform: scale(1.05); /* Slight zoom-in on hover */
+	background-color: rgba(3, 2, 2, 0.2); /* Lighten background slightly */
+}
+
+/* Smooth scrolling animation */
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-100%);
+	}
+}
