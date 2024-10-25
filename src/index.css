@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Testimonial container */
 .testimonial-container {
 	overflow: hidden;
@@ -49,3 +50,5 @@
 		transform: translateX(-100%);
 	}
 }
+
+
