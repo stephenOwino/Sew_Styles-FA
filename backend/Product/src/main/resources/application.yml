@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: Product
+
+server:
+  port: 6666

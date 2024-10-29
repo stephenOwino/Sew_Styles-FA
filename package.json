@@ -13,6 +13,7 @@
   "dependencies": {
     "@heroicons/react": "^2.1.5",
     "axios": "^1.7.7",
+    "com.stephenowino": "file:",
     "formik": "^2.4.6",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
