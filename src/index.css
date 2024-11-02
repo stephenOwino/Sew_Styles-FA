@@ -2,8 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< HEAD
-
 /* Testimonial container */
 .testimonial-container {
 	overflow: hidden;
@@ -21,9 +19,7 @@
 }
 
 /* Each testimonial card */
-=======>>>>>>>e217314
-	(Update components and configuration files, add new UI components)
-	.testimonial-card {
+.testimonial-card {
 	background-color: #ffffff; /* White background for the card */
 	border: 1px solid #e0e0e0; /* Light gray border */
 	border-radius: 12px; /* Rounded corners */
