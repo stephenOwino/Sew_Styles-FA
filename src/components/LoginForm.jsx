@@ -1,86 +1,89 @@
-// LoginForm.jsx
+// src/LoginForm.js
 import React from "react";
-import { TEInput, TERipple } from "tw-elements-react";
 
 const LoginForm = () => {
 	return (
-		<section className='mt-10'>
-			<div className='container h-full px-6 py-24'>
-				<div className='g-6 flex h-full flex-wrap items-center justify-center lg:justify-between'>
-					{/* Left column with image */}
-					<div className='mb-12 md:mb-0 md:w-8/12 lg:w-6/12'></div>
-
-					{/* Right column with form */}
-					<div className='md:w-8/12 lg:ml-6 lg:w-5/12'>
-						<form>
-							<TEInput
-								type='email'
-								label='Email address'
-								size='lg'
-								className='mb-6'
-							/>
-							<TEInput
-								type='password'
-								label='Password'
-								className='mb-6'
-								size='lg'
-							/>
-
-							{/* Remember me checkbox */}
-							<div className='mb-6 flex items-center justify-between'>
-								<div className='mb-[0.125rem] block min-h-[1.5rem] pl-[1.5rem]'>
-									<input
-										className='relative float-left -ml-[1.5rem] mr-[6px] mt-[0.15rem] h-[1.125rem] w-[1.125rem] appearance-none rounded-[0.25rem] border-[0.125rem] border-solid border-neutral-300 outline-none'
-										type='checkbox'
-										id='exampleCheck3'
-										defaultChecked
-									/>
-									<label
-										className='inline-block pl-[0.15rem] hover:cursor-pointer'
-										htmlFor='exampleCheck3'
-									>
-										Remember me
-									</label>
-								</div>
-								<a href='#!' className='text-primary'>
-									Terms and conditions
-								</a>
-							</div>
-
-							{/* Submit button */}
-							<TERipple rippleColor='light' className='w-full'>
-								<button
-									type='button'
-									className='inline-block w-full rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium uppercase text-white'
-								>
-									Sign up
-								</button>
-							</TERipple>
-
-							<div className='my-4 flex items-center before:mt-0.5 before:flex-1 before:border-t before:border-neutral-300 after:mt-0.5 after:flex-1 after:border-t after:border-neutral-300'>
-								<p className='mx-4 mb-0 text-center font-semibold'>OR</p>
-							</div>
-
-							{/* Social login buttons */}
-							<TERipple rippleColor='light' className='w-full'>
-								<a
-									className='mb-3 flex w-full items-center justify-center rounded bg-primary px-7 pb-2.5 pt-3 text-sm font-medium text-white'
-									href='#!'
-								>
-									Continue with Facebook
-								</a>
-							</TERipple>
-							<TERipple rippleColor='light' className='w-full'>
-								<a
-									className='mb-3 flex w-full items-center justify-center rounded bg-info px-7 pb-2.5 pt-3 text-sm font-medium text-white'
-									href='#!'
-								>
-									Continue with Twitter
-								</a>
-							</TERipple>
-						</form>
+		<section className='bg-gradient-to-r from-blue-300 to-purple-400 min-h-screen flex items-center justify-center'>
+			<div className='bg-white rounded-lg shadow-lg p-8 md:p-12 lg:p-16 w-full max-w-md'>
+				<h2 className='text-3xl font-bold text-center text-gray-800 mb-6'>
+					Login to Your Account
+				</h2>
+				<form>
+					{/* Email Input */}
+					<div className='mb-6'>
+						<label className='block mb-2 text-sm font-medium text-gray-700'>
+							Email Address
+						</label>
+						<input
+							type='email'
+							placeholder='Enter your email'
+							className='w-full p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200'
+							required
+						/>
 					</div>
-				</div>
+
+					{/* Password Input */}
+					<div className='mb-6'>
+						<label className='block mb-2 text-sm font-medium text-gray-700'>
+							Password
+						</label>
+						<input
+							type='password'
+							placeholder='Enter your password'
+							className='w-full p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200'
+							required
+						/>
+					</div>
+
+					{/* Remember me checkbox */}
+					<div className='flex items-center justify-between mb-6'>
+						<label className='flex items-center'>
+							<input
+								type='checkbox'
+								className='h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500'
+							/>
+							<span className='ml-2 text-sm text-gray-600'>Remember me</span>
+						</label>
+						<a href='#!' className='text-sm text-blue-600 hover:underline'>
+							Forgot password?
+						</a>
+					</div>
+
+					{/* Submit button */}
+					<button
+						type='submit'
+						className='w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition duration-200'
+					>
+						Login
+					</button>
+
+					<div className='my-6 flex items-center before:flex-1 before:border-t before:border-gray-300 after:flex-1 after:border-t after:border-gray-300'>
+						<p className='mx-4 mb-0 text-center text-gray-600 font-semibold'>
+							OR
+						</p>
+					</div>
+
+					{/* Social login buttons */}
+					<a
+						className='mb-3 flex w-full items-center justify-center bg-blue-600 text-white font-medium py-2 rounded hover:bg-blue-700 transition duration-200'
+						href='#!'
+					>
+						Continue with Facebook
+					</a>
+					<a
+						className='mb-3 flex w-full items-center justify-center bg-blue-400 text-white font-medium py-2 rounded hover:bg-blue-500 transition duration-200'
+						href='#!'
+					>
+						Continue with Twitter
+					</a>
+				</form>
+
+				<p className='text-center text-gray-600 mt-4'>
+					Don't have an account?{" "}
+					<a href='#!' className='text-blue-600 hover:underline'>
+						Sign Up
+					</a>
+				</p>
 			</div>
 		</section>
 	);

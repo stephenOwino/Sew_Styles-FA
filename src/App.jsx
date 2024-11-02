@@ -8,6 +8,8 @@ import Contact from "./pages/contact";
 import Login from "./pages/login";
 import Signup from "./pages/signup";
 import Services from "./components/Services";
+import TailorProfilePage from "./components/TailorProfile";
+import ChatPage from "./components/Chat";
 
 const App = () => {
 	return (
@@ -20,6 +22,8 @@ const App = () => {
 				<Route path='/about' element={<About />} />
 				<Route path='/services' element={<Services />} />
 				<Route path='/contact' element={<Contact />} />
+				<Route path='/tailors' element={<TailorProfilePage />} />
+				<Route path='/chatpage' element={<ChatPage />} />
 			</Routes>
 		</Router>
 	);
