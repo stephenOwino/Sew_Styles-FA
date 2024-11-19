@@ -1,91 +1,134 @@
-// src/LoginForm.js
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import Spinner from "./Spinner";
+import { reset, login } from "../slices/signupSlice";
 
 const LoginForm = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const { user, isLoading, isError, isSuccess, message } = useSelector(
+		(state) => state.signup
+	);
+
+	useEffect(() => {
+		if (isError) {
+			toast.error(message);
+		}
+		if (isSuccess || user) {
+			toast.success("Signup successful!");
+			navigate("/");
+		}
+		dispatch(reset());
+	}, [user, isError, isSuccess, message, navigate, dispatch]);
+
+	const [formData, setFormData] = useState({
+		email: "",
+		password: "",
+	});
+
+	const { email, password } = formData;
+
+	const handleChange = (e) => {
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
+	};
+
+	if (isLoading) {
+		return <Spinner />;
+	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+
+		if (!email || !password) {
+			toast.error("Please fill in all fields.");
+			return;
+		}
+
+		dispatch(login({ email, password }));
+	};
+
 	return (
-		<section className='bg-gradient-to-r from-blue-300 to-purple-400 min-h-screen flex items-center justify-center'>
-			<div className='bg-white rounded-lg shadow-lg p-8 md:p-12 lg:p-16 w-full max-w-md'>
-				<h2 className='text-3xl font-bold text-center text-gray-800 mb-6'>
-					Login to Your Account
-				</h2>
-				<form>
-					{/* Email Input */}
-					<div className='mb-6'>
-						<label className='block mb-2 text-sm font-medium text-gray-700'>
-							Email Address
-						</label>
+		<div className='min-h-screen bg-gray-900 text-white flex items-center justify-center'>
+			<form
+				onSubmit={handleSubmit}
+				className='shadow-md rounded px-8 pt-6 pb-0 mb-4 w-full max-w-sm'
+			>
+				{/* Email */}
+				<div className='mb-4'>
+					<label
+						className='block text-white text-sm font-bold mb-2'
+						htmlFor='email'
+					>
+						Email
+					</label>
+					<input
+						type='email'
+						id='email'
+						name='email'
+						value={email}
+						onChange={handleChange}
+						className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
+						required
+					/>
+				</div>
+
+				{/* Password */}
+				<div className='mb-4'>
+					<label
+						className='block text-white text-sm font-bold mb-2'
+						htmlFor='password'
+					>
+						Password
+					</label>
+					<input
+						type='password'
+						id='password'
+						name='password'
+						value={password}
+						onChange={handleChange}
+						className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
+						required
+					/>
+				</div>
+
+				{/* Remember me */}
+				<div className='flex items-center justify-between mb-6'>
+					<label className='flex items-center text-white'>
 						<input
-							type='email'
-							placeholder='Enter your email'
-							className='w-full p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200'
-							required
+							type='checkbox'
+							className='h-4 w-4 text-blue-500 border-gray-600 rounded focus:ring-blue-600'
 						/>
-					</div>
+						<span className='ml-2 text-sm'>Remember me</span>
+					</label>
+					<a href='#!' className='text-sm text-blue-400 hover:underline'>
+						Forgot password?
+					</a>
+				</div>
 
-					{/* Password Input */}
-					<div className='mb-6'>
-						<label className='block mb-2 text-sm font-medium text-gray-700'>
-							Password
-						</label>
-						<input
-							type='password'
-							placeholder='Enter your password'
-							className='w-full p-3 border rounded-lg border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 transition duration-200'
-							required
-						/>
-					</div>
-
-					{/* Remember me checkbox */}
-					<div className='flex items-center justify-between mb-6'>
-						<label className='flex items-center'>
-							<input
-								type='checkbox'
-								className='h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500'
-							/>
-							<span className='ml-2 text-sm text-gray-600'>Remember me</span>
-						</label>
-						<a href='#!' className='text-sm text-blue-600 hover:underline'>
-							Forgot password?
-						</a>
-					</div>
-
-					{/* Submit button */}
+				{/* Submit Button */}
+				<div className='flex items-center justify-between'>
 					<button
 						type='submit'
-						className='w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded transition duration-200'
+						className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+						disabled={isLoading}
 					>
-						Login
+						{isLoading ? "Logging In..." : "Login"}
 					</button>
+				</div>
 
-					<div className='my-6 flex items-center before:flex-1 before:border-t before:border-gray-300 after:flex-1 after:border-t after:border-gray-300'>
-						<p className='mx-4 mb-0 text-center text-gray-600 font-semibold'>
-							OR
-						</p>
-					</div>
-
-					{/* Social login buttons */}
-					<a
-						className='mb-3 flex w-full items-center justify-center bg-blue-600 text-white font-medium py-2 rounded hover:bg-blue-700 transition duration-200'
-						href='#!'
-					>
-						Continue with Facebook
-					</a>
-					<a
-						className='mb-3 flex w-full items-center justify-center bg-blue-400 text-white font-medium py-2 rounded hover:bg-blue-500 transition duration-200'
-						href='#!'
-					>
-						Continue with Twitter
-					</a>
-				</form>
-
-				<p className='text-center text-gray-600 mt-4'>
+				{/* Signup link */}
+				<p className='text-center text-white mt-4'>
 					Don't have an account?{" "}
-					<a href='#!' className='text-blue-600 hover:underline'>
+					<a href='/signup' className='text-blue-400 hover:underline'>
 						Sign Up
 					</a>
 				</p>
-			</div>
-		</section>
+			</form>
+		</div>
 	);
 };
 

@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 /* Testimonial container */
+
+body {
+	background-color: #1f2937;
+	color: #f9fafb;
+	height: 100%;
+	margin: 0;
+}
+
 .testimonial-container {
 	overflow: hidden;
 	width: 100%;
@@ -47,11 +55,6 @@
 
 .dot.active {
 	background-color: #fbbf24; /* Active dot color */
-}
-
-body {
-	background-color: #1f2937; /* Dark background for the body */
-	color: #f9fafb; /* Light text color */
 }
 .moving-circle {
 	position: absolute;
