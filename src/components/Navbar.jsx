@@ -1,7 +1,16 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { logout, reset } from "../slices/signupSlice";
 
 const Navbar = () => {
+	const navigate = useNavigate();
+	const location = useLocation(); // Get current route location
+	const dispatch = useDispatch();
+
+	// Get the user from the Redux store
+	const { user } = useSelector((state) => state.signup);
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -13,8 +22,14 @@ const Navbar = () => {
 		setIsDropdownOpen(!isDropdownOpen);
 	};
 
+	const handleLogout = () => {
+		dispatch(logout());
+		dispatch(reset());
+		navigate("/"); // Redirect to the home page after logout
+	};
+
 	return (
-		<nav className='bg-gray-800 p-2 fixed z-50 w-full mt-0 '>
+		<nav className='bg-gray-800 p-2 fixed z-50 w-full mt-0'>
 			<div className='container mx-auto flex justify-between items-center'>
 				{/* Site Logo */}
 				<div className='text-white text-lg font-bold flex-shrink-0'>
@@ -43,6 +58,32 @@ const Navbar = () => {
 					</div>
 				</div>
 
+				{/* Login/Logout Link */}
+				<ul>
+					{user ? (
+						// If user is logged in, show Logout link
+						<Link
+							onClick={(e) => {
+								e.preventDefault(); // Prevent the link navigation
+								handleLogout(); // Call the logout function
+							}}
+							className='block px-4 py-2 hover:bg-gray-200'
+						>
+							Logout
+						</Link>
+					) : (
+						// If user is not logged in, show Login link
+						<li>
+							{location.pathname !== "/login" && (
+								<Link
+									to='/login'
+									className='block px-4 py-2 hover:bg-gray-200'
+								></Link>
+							)}
+						</li>
+					)}
+				</ul>
+
 				{/* Menu Toggle Button for Mobile */}
 				<div className='md:hidden'>
 					<button
@@ -53,7 +94,7 @@ const Navbar = () => {
 					</button>
 				</div>
 
-				{/* Navigation Links */}
+				{/* Navigation Links (Desktop) */}
 				<div
 					className={`hidden md:flex ${
 						isOpen ? "block" : "hidden"
@@ -88,13 +129,11 @@ const Navbar = () => {
 							className='h-8 mr-8'
 						/>
 					</button>
+
 					{isDropdownOpen && (
 						<div className='absolute right-0 mt-2 bg-white text-gray-800 rounded shadow-lg z-50'>
 							<Link to='/profile' className='block px-4 py-2 hover:bg-gray-200'>
 								Profile
-							</Link>
-							<Link to='/logout' className='block px-4 py-2 hover:bg-gray-200'>
-								Logout
 							</Link>
 						</div>
 					)}

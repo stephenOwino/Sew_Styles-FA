@@ -10,24 +10,28 @@ import Signup from "./pages/signup";
 import Services from "./components/Services";
 import TailorProfilePage from "./components/TailorProfile";
 import ChatPage from "./components/Chat";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const App = () => {
 	return (
-		<Router>
-			<Navbar />
-			<Routes>
-				<Route path='/login' element={<Login />} />
-				<Route path='/signup' element={<Signup />} />
-				<Route path='/' element={<Home />} />
-				<Route path='/about' element={<About />} />
-				<Route path='/services' element={<Services />} />
-				<Route path='/contact' element={<Contact />} />
-				<Route path='/tailors' element={<TailorProfilePage />} />
-				<Route path='/chatpage' element={<ChatPage />} />
-			</Routes>
-		</Router>
+		<>
+			<Router>
+				<Navbar />
+				<Routes>
+					<Route path='/login' element={<Login />} />
+					<Route path='/signup' element={<Signup />} />
+					<Route path='/' element={<Home />} />
+					<Route path='/about' element={<About />} />
+					<Route path='/services' element={<Services />} />
+					<Route path='/contact' element={<Contact />} />
+					<Route path='/tailors' element={<TailorProfilePage />} />
+					<Route path='/chatpage' element={<ChatPage />} />
+				</Routes>
+			</Router>
+			<ToastContainer />
+		</>
 	);
 };
-
 
 export default App;

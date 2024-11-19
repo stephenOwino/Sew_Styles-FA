@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import MapComponent from "./Map";
 
 const TailorProfilePage = () => {
 	const navigate = useNavigate();
@@ -145,9 +144,7 @@ const TailorProfilePage = () => {
 				{/* Location Map */}
 				<div className='mt-8'>
 					<h3 className='text-xl font-bold'>Location</h3>
-					<div className='h-64 bg-gray-300 rounded-lg mt-2'>
-						<MapComponent />
-					</div>
+					<div className='h-64 bg-gray-300 rounded-lg mt-2'></div>
 				</div>
 
 				{/* Tailor's Gallery Section */}

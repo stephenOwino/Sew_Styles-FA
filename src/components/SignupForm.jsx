@@ -1,43 +1,86 @@
-// src/SignupForm.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { reset, register } from "../slices/signupSlice";
+import Spinner from "./Spinner";
 
 const SignupForm = () => {
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
+
+	const { user, isLoading, isError, isSuccess, message } = useSelector(
+		(state) => state.signup
+	);
+
+	useEffect(() => {
+		if (isError) {
+			toast.error(message);
+		}
+		if (isSuccess || user) {
+			toast.success("Signup successful!");
+			navigate("/");
+		}
+		dispatch(reset());
+	}, [user, isError, isSuccess, message, navigate, dispatch]);
+
 	const [formData, setFormData] = useState({
 		firstName: "",
 		lastName: "",
 		email: "",
 		password: "",
-		image: null, // New state for image upload
+		confirmPassword: "",
+		image: null,
 	});
+
+	const { firstName, lastName, email, password, confirmPassword, image } =
+		formData;
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
 		setFormData({ ...formData, [name]: value });
 	};
 
-	// Handle image file change
 	const handleFileChange = (e) => {
 		setFormData({ ...formData, image: e.target.files[0] });
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		const formDataToSubmit = new FormData();
 
-		// Append the form fields to FormData
-		for (const key in formData) {
-			formDataToSubmit.append(key, formData[key]);
+		if (!firstName || !lastName || !email || !password || !confirmPassword) {
+			toast.error("Please fill in all fields.");
+			return;
 		}
 
-		// Handle signup logic here (send formDataToSubmit to your backend)
-		console.log("Signup data:", formDataToSubmit);
+		if (password !== confirmPassword) {
+			toast.error("Passwords do not match. Please try again.");
+			return;
+		}
+
+		// Create FormData to handle both fields and image
+		const formDataToSubmit = new FormData();
+		formDataToSubmit.append("firstName", firstName);
+		formDataToSubmit.append("lastName", lastName);
+		formDataToSubmit.append("email", email);
+		formDataToSubmit.append("password", password);
+		if (image) {
+			formDataToSubmit.append("image", image);
+		}
+
+		dispatch(register(formDataToSubmit));
 	};
+
+	if (isLoading) {
+		return <Spinner />;
+	}
 
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className=' shadow-md rounded px-8 pt-6 pb-8 mb-4'
+			className='shadow-md rounded px-8 pt-6 pb-0 mb-4'
 		>
+			{/* First Name */}
 			<div className='mb-4'>
 				<label
 					className='block text-white text-sm font-bold mb-2'
@@ -49,12 +92,14 @@ const SignupForm = () => {
 					type='text'
 					id='firstName'
 					name='firstName'
-					value={formData.firstName}
+					value={firstName}
 					onChange={handleChange}
-					className='shadow appearance-none border rounded w-full py-2 px-3 text-white'
+					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
 					required
 				/>
 			</div>
+
+			{/* Last Name */}
 			<div className='mb-4'>
 				<label
 					className='block text-white text-sm font-bold mb-2'
@@ -66,15 +111,17 @@ const SignupForm = () => {
 					type='text'
 					id='lastName'
 					name='lastName'
-					value={formData.lastName}
+					value={lastName}
 					onChange={handleChange}
-					className='shadow appearance-none border rounded w-full py-2 px-3 text-white'
+					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
 					required
 				/>
 			</div>
+
+			{/* Email */}
 			<div className='mb-4'>
 				<label
-					className='block tex-white text-sm font-bold mb-2'
+					className='block text-white text-sm font-bold mb-2'
 					htmlFor='email'
 				>
 					Email
@@ -83,13 +130,15 @@ const SignupForm = () => {
 					type='email'
 					id='email'
 					name='email'
-					value={formData.email}
+					value={email}
 					onChange={handleChange}
-					className='shadow appearance-none border rounded w-full py-2 px-3 text-white'
+					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
 					required
 				/>
 			</div>
-			<div className='mb-6'>
+
+			{/* Password */}
+			<div className='mb-4'>
 				<label
 					className='block text-white text-sm font-bold mb-2'
 					htmlFor='password'
@@ -100,12 +149,33 @@ const SignupForm = () => {
 					type='password'
 					id='password'
 					name='password'
-					value={formData.password}
+					value={password}
 					onChange={handleChange}
-					className='shadow appearance-none border rounded w-full py-2 px-3 text-white'
+					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
 					required
 				/>
 			</div>
+
+			{/* Confirm Password */}
+			<div className='mb-4'>
+				<label
+					className='block text-white text-sm font-bold mb-2'
+					htmlFor='confirmPassword'
+				>
+					Confirm Password
+				</label>
+				<input
+					type='password'
+					id='confirmPassword'
+					name='confirmPassword'
+					value={confirmPassword}
+					onChange={handleChange}
+					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
+					required
+				/>
+			</div>
+
+			{/* Profile Image */}
 			<div className='mb-6'>
 				<label
 					className='block text-white text-sm font-bold mb-2'
@@ -118,17 +188,20 @@ const SignupForm = () => {
 					id='image'
 					name='image'
 					onChange={handleFileChange}
-					className='shadow appearance-none border rounded w-full py-2 px-3 text-white'
-					accept='image/*' // Accepts image files only
+					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
+					accept='image/*'
 					required
 				/>
 			</div>
+
+			{/* Submit Button */}
 			<div className='flex items-center justify-between'>
 				<button
 					type='submit'
 					className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'
+					disabled={isLoading}
 				>
-					Sign Up
+					{isLoading ? "Signing Up..." : "Sign Up"}
 				</button>
 			</div>
 		</form>

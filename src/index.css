@@ -112,18 +112,3 @@ body {
 		transform-origin: 0 50px;
 	}
 }
-/* index.css or your main CSS file */
-
-/* Import Leaflet CSS */
-@import url("leaflet/dist/leaflet.css");
-
-/* Import Leaflet Geosearch CSS */
-@import url("leaflet-geosearch/dist/geosearch.css");
-
-/* Other CSS rules */
-html,
-body {
-	margin: 0;
-	padding: 0;
-	height: 100%;
-}

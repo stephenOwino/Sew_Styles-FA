@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "animate.css";
+// import "animate.css";
 
 const MovingBackground = () => {
 	const [scrollOffset, setScrollOffset] = useState(0);
