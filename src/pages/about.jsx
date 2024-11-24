@@ -6,14 +6,14 @@ const AboutUs = () => {
 		<div className='bg-gray-50 min-h-screen p-4 sm:p-8'>
 			<div className='max-w-4xl mx-auto bg-white rounded-lg shadow-lg p-6 sm:p-8'>
 				<h1 className='text-4xl font-extrabold text-center text-gray-800 mb-8'>
-					About Us
+					About SewStyle
 				</h1>
 				<p className='text-lg text-gray-700 leading-relaxed mb-6'>
-					SewStyle was born from the vision of Otiengele, alongside a group of
-					passionate artisans, with the desire to bridge the gap between
-					talented tailors and individuals seeking custom clothing. Our platform
-					is dedicated to celebrating the artistry of tailoring, ensuring that
-					everyone can find their perfect fit and express their unique style.
+					Founded by visionary Otiengele and a dedicated team of expert
+					artisans, SewStyle was created to connect individuals with talented,
+					skilled tailors for custom clothing that speaks to personal style. Our
+					platform celebrates the artistry of tailoring, ensuring each garment
+					fits perfectly while enhancing your unique sense of fashion.
 				</p>
 
 				<div className='bg-blue-50 p-4 rounded-lg mt-6 shadow-md'>
@@ -21,12 +21,11 @@ const AboutUs = () => {
 						Our Mission
 					</h2>
 					<p className='text-base text-gray-700 leading-relaxed mb-4'>
-						At SewStyle, we are dedicated to simplifying the tailoring
-						experience for our clients. We provide a user-friendly platform that
-						connects individuals with talented tailors across Kenya, allowing
-						for seamless communication and collaboration. Our mission is to
-						empower both clients and tailors, celebrating unique styles and
-						craftsmanship.
+						At SewStyle, we aim to revolutionize the tailoring experience by
+						offering a seamless, user-friendly platform that brings clients and
+						talented tailors together. Our mission is to empower both customers
+						and artisans, fostering creativity, collaboration, and a deep
+						appreciation for craftsmanship.
 					</p>
 				</div>
 
@@ -35,35 +34,37 @@ const AboutUs = () => {
 						Who We Are
 					</h2>
 					<p className='text-base text-gray-700 leading-relaxed mb-4'>
-						SewStyle is more than just a service; it's a community of passionate
-						artisans and fashion enthusiasts. We work closely with skilled
-						tailors to showcase their talents, helping them connect with clients
-						who appreciate quality and custom craftsmanship.
+						SewStyle is not just a service; it's a dynamic community of artisans
+						and fashion-forward individuals who share a passion for unique,
+						custom-made clothing. We work hand in hand with skilled tailors to
+						provide a platform that showcases their work while connecting them
+						with clients who value high-quality craftsmanship.
 					</p>
 				</div>
 
 				<div className='bg-blue-50 p-4 rounded-lg mt-6 shadow-md'>
 					<h2 className='text-2xl font-bold text-gray-800 mb-4 text-center'>
-						Why Choose Us?
+						Why Choose SewStyle?
 					</h2>
 					<p className='text-base text-gray-700 leading-relaxed mb-4'>
-						We understand that every individual has a unique vision for their
-						clothing. Our platform not only highlights the exceptional skills of
-						our tailors but also ensures a personalized experience for every
-						client. Together, we can create fashion that tells your story and
-						reflects your personal style.
+						At SewStyle, we understand that style is deeply personal. Our
+						platform not only highlights the exceptional skills of our tailors
+						but also ensures a customized experience for every client. Whether
+						you’re looking for bespoke tailoring or want to explore unique,
+						handcrafted pieces, SewStyle is here to bring your vision to life.
 					</p>
 				</div>
 
 				<div className='bg-gray-50 p-4 rounded-lg mt-6 shadow-md'>
 					<h2 className='text-2xl font-bold text-gray-800 mb-4 text-center'>
-						Join Us
+						Join Us in Celebrating Style
 					</h2>
 					<p className='text-base text-gray-700 leading-relaxed mb-4'>
-						Join us on this exciting journey to transform your wardrobe with
-						custom-made pieces that embody your personality and flair. Together,
-						let’s celebrate the artistry of tailoring and create a fashion
-						community that thrives on creativity and individuality.
+						Be part of a transformative journey where fashion meets artistry. At
+						SewStyle, we’re not just crafting garments; we’re creating timeless
+						pieces that reflect your personality and style. Join us today to
+						connect with top-tier tailors and celebrate individuality through
+						custom fashion.
 					</p>
 				</div>
 
@@ -72,7 +73,7 @@ const AboutUs = () => {
 						href='/explore'
 						className='inline-block bg-blue-600 text-white py-3 px-6 rounded-lg shadow hover:bg-blue-700 transition duration-300'
 					>
-						Explore Tailors
+						Explore Our Tailors
 					</a>
 				</div>
 			</div>

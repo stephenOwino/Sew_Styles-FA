@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom"; // Import Link for routing
 import { HeartIcon, FolderIcon } from "@heroicons/react/24/solid";
 
 const Services = () => {
+	// State to track the like counts for each image
+	const [likeCounts, setLikeCounts] = useState([0, 0, 0, 0, 0, 0, 0, 0]);
+
+	const handleLike = (index) => {
+		setLikeCounts((prevCounts) => {
+			const newCounts = [...prevCounts];
+			newCounts[index]++;
+			return newCounts;
+		});
+	};
+
+	const handleDoubleClick = (index) => {
+		handleLike(index); // Double click should also increase the like count
+	};
+
 	return (
 		<div className='bg-black min-h-screen p-4'>
 			<div className='flex flex-col md:flex-row'>
@@ -20,15 +35,23 @@ const Services = () => {
 							<div
 								key={index}
 								className='relative group mt-12 rounded-lg overflow-hidden'
+								onDoubleClick={() => handleDoubleClick(index)} // Handle double click
 							>
 								<img
 									src={src}
 									alt={`Tailoring Example ${index + 1}`}
 									className='object-cover h-full w-full rounded-lg shadow-md transition-transform transform group-hover:scale-105'
 								/>
+								{/* Like Count Display at Top Left */}
+								<div className='absolute top-4 left-4 bg-black bg-opacity-60 text-white text-sm font-semibold px-2 py-1 rounded-md shadow-lg'>
+									{likeCounts[index]} Likes
+								</div>
 								<div className='absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'>
 									<div className='flex space-x-4'>
-										<button className='text-red-500 hover:text-red-700 transition-colors'>
+										<button
+											className='text-red-500 hover:text-red-700 transition-colors'
+											onClick={() => handleLike(index)} // Handle click to like
+										>
 											<HeartIcon className='h-6 w-6' />
 										</button>
 										<button className='text-blue-500 hover:text-blue-700 transition-colors'>
@@ -151,15 +174,23 @@ const Services = () => {
 							<div
 								key={index}
 								className='relative group mt-12 rounded-lg overflow-hidden'
+								onDoubleClick={() => handleDoubleClick(index + 4)} // Handle double click
 							>
 								<img
 									src={src}
 									alt={`Tailoring Example ${index + 5}`}
 									className='object-cover h-full w-full rounded-lg shadow-md transition-transform transform group-hover:scale-105'
 								/>
+								{/* Like Count Display at Top Left */}
+								<div className='absolute top-4 left-4 bg-black bg-opacity-60 text-white text-sm font-semibold px-2 py-1 rounded-md shadow-lg'>
+									{likeCounts[index + 4]} Likes
+								</div>
 								<div className='absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity'>
 									<div className='flex space-x-4'>
-										<button className='text-red-500 hover:text-red-700 transition-colors'>
+										<button
+											className='text-red-500 hover:text-red-700 transition-colors'
+											onClick={() => handleLike(index + 4)} // Handle click to like
+										>
 											<HeartIcon className='h-6 w-6' />
 										</button>
 										<button className='text-blue-500 hover:text-blue-700 transition-colors'>

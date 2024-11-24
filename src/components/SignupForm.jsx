@@ -31,10 +31,18 @@ const SignupForm = () => {
 		password: "",
 		confirmPassword: "",
 		image: null,
+		isTailor: false, // New state for distinguishing tailors
 	});
 
-	const { firstName, lastName, email, password, confirmPassword, image } =
-		formData;
+	const {
+		firstName,
+		lastName,
+		email,
+		password,
+		confirmPassword,
+		image,
+		isTailor,
+	} = formData;
 
 	const handleChange = (e) => {
 		const { name, value } = e.target;
@@ -43,6 +51,10 @@ const SignupForm = () => {
 
 	const handleFileChange = (e) => {
 		setFormData({ ...formData, image: e.target.files[0] });
+	};
+
+	const handleCheckboxChange = (e) => {
+		setFormData({ ...formData, isTailor: e.target.checked });
 	};
 
 	const handleSubmit = async (e) => {
@@ -64,8 +76,9 @@ const SignupForm = () => {
 		formDataToSubmit.append("lastName", lastName);
 		formDataToSubmit.append("email", email);
 		formDataToSubmit.append("password", password);
-		if (image) {
-			formDataToSubmit.append("image", image);
+		formDataToSubmit.append("isTailor", isTailor); // Add tailor flag
+		if (isTailor && image) {
+			formDataToSubmit.append("image", image); // Only for Tailors
 		}
 
 		dispatch(register(formDataToSubmit));
@@ -175,24 +188,43 @@ const SignupForm = () => {
 				/>
 			</div>
 
-			{/* Profile Image */}
-			<div className='mb-6'>
+			{/* Tailor Checkbox */}
+			<div className='mb-4'>
 				<label
 					className='block text-white text-sm font-bold mb-2'
-					htmlFor='image'
+					htmlFor='isTailor'
 				>
-					Profile Image
+					Do you want to register as a Tailor?
 				</label>
 				<input
-					type='file'
-					id='image'
-					name='image'
-					onChange={handleFileChange}
-					className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
-					accept='image/*'
-					required
+					type='checkbox'
+					id='isTailor'
+					name='isTailor'
+					checked={isTailor}
+					onChange={handleCheckboxChange}
+					className='form-checkbox text-blue-500'
 				/>
 			</div>
+
+			{/* Profile Image (only for Tailors) */}
+			{isTailor && (
+				<div className='mb-6'>
+					<label
+						className='block text-white text-sm font-bold mb-2'
+						htmlFor='image'
+					>
+						Profile Image (Tailor)
+					</label>
+					<input
+						type='file'
+						id='image'
+						name='image'
+						onChange={handleFileChange}
+						className='shadow appearance-none border rounded w-full py-2 px-3 bg-gray-700 text-white'
+						accept='image/*'
+					/>
+				</div>
+			)}
 
 			{/* Submit Button */}
 			<div className='flex items-center justify-between'>

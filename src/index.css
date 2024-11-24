@@ -115,3 +115,26 @@ body {
 		transform-origin: 0 50px;
 	}
 }
+/* CSS for Black and Dark Blue Gradient Animation */
+@keyframes gradientAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.animate-gradient {
+	animation: gradientAnimation 15s ease infinite;
+	background-size: 200% 200%;
+	background-image: linear-gradient(
+		to right,
+		#000000,
+		#1a2a6c,
+		#0f3057
+	); /* Black to Dark Blue */
+}

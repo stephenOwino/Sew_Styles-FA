@@ -8,18 +8,19 @@ const ContactUs = () => {
 					Contact Us
 				</h1>
 				<p className='text-lg text-gray-700 leading-relaxed mb-6 text-center'>
-					We'd love to hear from you! You can reach us through any of the
-					following methods:
+					We value your feedback and are here to assist you. Whether you have
+					questions, need support, or want to share your thoughts, we are just a
+					click away. Reach out to us through any of the following methods:
 				</p>
 
 				<div className='mt-6'>
 					<h2 className='text-2xl font-bold text-gray-800 mb-4 text-center'>
-						Get in Touch
+						Connect With Us
 					</h2>
 
 					{/* Email Contact */}
 					<div className='flex items-center justify-center mb-4'>
-						<span className='text-lg text-gray-700'>Email:</span>
+						<span className='text-lg text-gray-700 font-semibold'>Email:</span>
 						<a
 							href='mailto:support@sewstyle.com'
 							className='ml-2 text-blue-600 hover:underline'
@@ -30,7 +31,7 @@ const ContactUs = () => {
 
 					{/* Phone Contact */}
 					<div className='flex items-center justify-center mb-4'>
-						<span className='text-lg text-gray-700'>Phone:</span>
+						<span className='text-lg text-gray-700 font-semibold'>Phone:</span>
 						<a
 							href='tel:+254712345678'
 							className='ml-2 text-blue-600 hover:underline'
@@ -43,7 +44,7 @@ const ContactUs = () => {
 					<h2 className='text-2xl font-bold text-gray-800 mb-4 text-center'>
 						Follow Us
 					</h2>
-					<div className='flex justify-center space-x-4 mb-4'>
+					<div className='flex justify-center space-x-6 mb-6'>
 						<a
 							href='https://facebook.com/sewstyle'
 							className='text-blue-600 hover:text-blue-700'
@@ -74,30 +75,30 @@ const ContactUs = () => {
 					<h2 className='text-2xl font-bold text-gray-800 mb-4 text-center'>
 						Send Us a Message
 					</h2>
-					<form className='space-y-4'>
+					<form className='space-y-6'>
 						<input
 							type='text'
-							placeholder='Your Name'
-							className='w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
+							placeholder='Full Name'
+							className='w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
 							required
 						/>
 						<input
 							type='email'
-							placeholder='Your Email'
-							className='w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
+							placeholder='Email Address'
+							className='w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
 							required
 						/>
 						<textarea
 							placeholder='Your Message'
-							className='w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
-							rows='4'
+							className='w-full p-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-600'
+							rows='6'
 							required
 						></textarea>
 						<button
 							type='submit'
-							className='w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-200'
+							className='w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-200'
 						>
-							Submit
+							Submit Message
 						</button>
 					</form>
 				</div>
