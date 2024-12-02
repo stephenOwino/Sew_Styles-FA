@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import "../../src/index.css";
 
 const testimonials = [
 	{
@@ -23,21 +24,37 @@ const testimonials = [
 	},
 ];
 
-// Component remains the same
 const TestimonialsCarousel = () => {
-	const allTestimonials = [...testimonials, ...testimonials]; // Duplicate testimonials for seamless scroll
+	const [index, setIndex] = useState(0);
+	const duration = 5000; // Time for each testimonial display in ms
+
+	useEffect(() => {
+		const interval = setInterval(() => {
+			setIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
+		}, duration);
+		return () => clearInterval(interval);
+	}, []);
 
 	return (
-		<div className='testimonial-container'>
-			<div className='testimonial-row'>
-				{allTestimonials.map((testimonial, index) => (
-					<div key={index} className='testimonial-card'>
-						<h3 className='text-lg font-semibold text-white'>
-							{testimonial.name}
-						</h3>
-						<p className='text-sm text-gray-400'>{testimonial.location}</p>
-						<p className='mt-2 text-sm text-gray-300'>"{testimonial.text}"</p>
-					</div>
+		<div className='flex flex-col items-center justify-center relative overflow-hidden bg-gray-800 py-16 px-4'>
+			<h2 className='text-3xl font-extrabold text-center text-white mb-8'>
+				What Our Clients Say
+			</h2>
+			<div className='testimonial-card transition-opacity duration-1000 ease-in-out shadow-lg'>
+				<h3 className='text-xl font-semibold text-gray-900'>
+					{testimonials[index].name}
+				</h3>
+				<p className='text-sm text-gray-500'>{testimonials[index].location}</p>
+				<p className='mt-4 text-lg italic text-gray-600'>
+					"{testimonials[index].text}"
+				</p>
+			</div>
+			<div className='dots-container flex justify-center mt-4'>
+				{testimonials.map((_, dotIndex) => (
+					<div
+						key={dotIndex}
+						className={`dot ${dotIndex === index ? "active" : ""}`}
+					></div>
 				))}
 			</div>
 		</div>

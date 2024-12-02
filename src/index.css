@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 /* Testimonial container */
+
+body {
+	background-color: #1f2937;
+	color: #f9fafb;
+	height: 100%;
+	margin: 0;
+}
+
 .testimonial-container {
 	overflow: hidden;
 	width: 100%;
@@ -20,32 +28,113 @@
 
 /* Each testimonial card */
 .testimonial-card {
-	min-width: 300px;
-	margin-right: 20px;
-	background-color: rgba(14, 12, 12, 0.1); /* Slightly transparent background */
-	padding: 1rem;
-	border-radius: 8px;
-	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
-	transition: transform 0.2s ease-in-out;
+	background-color: #ffffff; /* White background for the card */
+	border: 1px solid #e0e0e0; /* Light gray border */
+	border-radius: 12px; /* Rounded corners */
+	padding: 2rem; /* Padding inside the card */
+	text-align: center; /* Center text */
+	opacity: 1; /* Fully opaque */
+	transition: opacity 1s ease-in-out; /* Smooth fade transition */
+	max-width: 600px; /* Set a max width for the card */
+	width: 100%; /* Make the card responsive */
 }
 
-/* Pause animation on hover */
-.testimonial-container:hover .testimonial-row {
-	animation-play-state: paused; /* Stops scrolling when hovered */
+.dots-container {
+	display: flex; /* Flexbox for centering */
+	justify-content: center; /* Center the dots */
+	gap: 0.5rem; /* Space between dots */
 }
 
-/* Add a subtle zoom-in effect on hover for readability */
-.testimonial-card:hover {
-	transform: scale(1.05); /* Slight zoom-in on hover */
-	background-color: rgba(3, 2, 2, 0.2); /* Lighten background slightly */
+.dot {
+	width: 12px; /* Dot width */
+	height: 12px; /* Dot height */
+	border-radius: 50%; /* Make dots circular */
+	background-color: #ccc; /* Default dot color */
+	transition: background-color 0.3s ease; /* Smooth transition for color change */
 }
 
-/* Smooth scrolling animation */
-@keyframes scroll {
+.dot.active {
+	background-color: #fbbf24; /* Active dot color */
+}
+.moving-circle {
+	position: absolute;
+	top: 0%; /* Center vertically */
+	left: 50%; /* Center horizontally */
+	transform: translate(-50%, -50%); /* Center precisely */
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	background-color: #dfa921;
+	border: 1px solid rgb(9, 12, 9);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	animation: rotate 25s linear infinite;
+}
+
+/* Text within the circle */
+.circle-text-char {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform-origin: 0 75px;
+	font-size: 0.8rem;
+	font-weight: bolder;
+	color: black;
+}
+
+/* Keyframes for circular movement */
+@keyframes rotate {
 	0% {
-		transform: translateX(0);
+		transform: translate(-50%, -50%) rotate(0deg);
 	}
 	100% {
-		transform: translateX(-100%);
+		transform: translate(-50%, -50%) rotate(360deg);
 	}
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.moving-circle {
+		width: 120px;
+		height: 120px;
+	}
+	.circle-text-char {
+		font-size: 0.7rem;
+		transform-origin: 0 60px;
+	}
+}
+
+@media (max-width: 480px) {
+	.moving-circle {
+		width: 100px;
+		height: 100px;
+	}
+	.circle-text-char {
+		font-size: 0.6rem;
+		transform-origin: 0 50px;
+	}
+}
+/* CSS for Black and Dark Blue Gradient Animation */
+@keyframes gradientAnimation {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.animate-gradient {
+	animation: gradientAnimation 15s ease infinite;
+	background-size: 200% 200%;
+	background-image: linear-gradient(
+		to right,
+		#000000,
+		#1a2a6c,
+		#0f3057
+	); /* Black to Dark Blue */
 }
