@@ -18,31 +18,52 @@ const Navbar = () => {
 		dispatch(logout());
 		dispatch(reset());
 		navigate("/");
-		setIsOpen(false); // Close mobile menu on logout
+		setIsOpen(false);
 	};
 
-	// Navigation links based on auth state
+	// Role-based navigation links
 	const navLinks = user
-		? [
-				{ to: "/", label: "Home" },
-				{ to: "/about", label: "About" },
-				{ to: "/services", label: "Services" },
-				{ to: "/contact", label: "Contact" },
-				{ to: "/gallery", label: "Gallery" },
-		  ]
+		? {
+				USER: [
+					{ to: "/", label: "Home" },
+					{ to: "/gallery", label: "Gallery" },
+					{ to: "/services", label: "Services" },
+					{ to: "/contact", label: "Contact" },
+					{ to: "/about", label: "About" },
+				],
+				TAILOR: [
+					{ to: "/", label: "Home" },
+					{ to: "/gallery", label: "Gallery" },
+					{ to: "/create-gallery", label: "Create Gallery" },
+					// Removed: { to: "/upload-image", label: "Upload Image" }
+					{ to: "/services", label: "Services" },
+					{ to: "/contact", label: "Contact" },
+					{ to: "/about", label: "About" },
+				],
+				ADMIN: [
+					{ to: "/", label: "Home" },
+					{ to: "/gallery", label: "Gallery" },
+					{ to: "/create-gallery", label: "Create Gallery" },
+					// Removed: { to: "/upload-image", label: "Upload Image" }
+					{ to: "/admin-dashboard", label: "Dashboard" },
+					{ to: "/services", label: "Services" },
+					{ to: "/contact", label: "Contact" },
+					{ to: "/about", label: "About" },
+				],
+		  }[user.role] || []
 		: [
 				{ to: "/", label: "Home" },
 				{ to: "/login", label: "Login" },
 				{ to: "/signup", label: "Signup" },
-				{ to: "/about", label: "About" },
 				{ to: "/services", label: "Services" },
 				{ to: "/contact", label: "Contact" },
+				{ to: "/about", label: "About" },
 		  ];
 
+	// Rest of the code remains unchanged...
 	return (
 		<nav className='bg-gray-900 fixed top-0 left-0 w-full z-50 shadow-lg'>
 			<div className='container mx-auto px-4 py-3 flex justify-between items-center'>
-				{/* Logo */}
 				<Link to='/' className='flex-shrink-0'>
 					<img
 						src='https://cdn-icons-png.freepik.com/256/7885/7885612.png?semt=ais_hybrid'
@@ -50,8 +71,6 @@ const Navbar = () => {
 						className='h-10 w-auto'
 					/>
 				</Link>
-
-				{/* Search Bar */}
 				<div className='hidden lg:flex flex-grow mx-6 max-w-md'>
 					<div className='relative w-full'>
 						<input
@@ -68,8 +87,6 @@ const Navbar = () => {
 						</span>
 					</div>
 				</div>
-
-				{/* Desktop Navigation */}
 				<div className='hidden lg:flex items-center space-x-6'>
 					{navLinks.map((link) => (
 						<Link
@@ -88,7 +105,6 @@ const Navbar = () => {
 							Logout
 						</button>
 					)}
-					{/* User Dropdown */}
 					{user && (
 						<div className='relative'>
 							<button
@@ -121,7 +137,6 @@ const Navbar = () => {
 							)}
 						</div>
 					)}
-					{/* Notification Icon */}
 					<div className='relative'>
 						<img
 							src='https://cdn-icons-png.flaticon.com/128/10473/10473385.png'
@@ -133,8 +148,6 @@ const Navbar = () => {
 						</span>
 					</div>
 				</div>
-
-				{/* Mobile Menu Button */}
 				<div className='lg:hidden'>
 					<button
 						onClick={toggleMenu}
@@ -172,8 +185,6 @@ const Navbar = () => {
 					</button>
 				</div>
 			</div>
-
-			{/* Mobile Navigation */}
 			{isOpen && (
 				<div className='lg:hidden bg-gray-900 px-4 py-2'>
 					{navLinks.map((link) => (
@@ -194,7 +205,6 @@ const Navbar = () => {
 							Logout
 						</button>
 					)}
-					{/* Mobile Search */}
 					<div className='relative mt-2'>
 						<input
 							type='text'

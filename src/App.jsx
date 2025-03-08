@@ -13,9 +13,10 @@ import Signup from "./pages/RegisterPage";
 import Services from "./components/Services";
 import TailorProfilePage from "./components/TailorProfile";
 import ChatPage from "./components/Chat";
-import ExplorePage from "./components/Explore";
 import SettingsPage from "./pages/SettingsPage";
-import CreateImage from "./components/CreateImage";
+import GalleryPage from "./pages/GalleryPage";
+import CreateGallery from "./pages/CreateGallery";
+import UploadImage from "./pages/UploadImage";
 
 const App = () => {
 	return (
@@ -30,10 +31,11 @@ const App = () => {
 				<Route path='/contact' element={<Contact />} />
 				<Route path='/tailors' element={<TailorProfilePage />} />
 				<Route path='/chatpage' element={<ChatPage />} />
-				<Route path='/gallery' element={<ExplorePage />} />
 				<Route path='/settings' element={<SettingsPage />} />
 				<Route path='/chat' element={<ChatPage />} />
-				<Route path='/create' element={<CreateImage />} />
+				<Route path='/gallery' element={<GalleryPage />} />
+				<Route path='/create-gallery' element={<CreateGallery />} />
+				<Route path='/upload-image/:galleryId' element={<UploadImage />} />
 			</Routes>
 			<ToastContainer />
 		</Provider>

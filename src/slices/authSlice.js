@@ -25,13 +25,20 @@ export const register = createAsyncThunk(
 			localStorage.setItem(
 				"user",
 				JSON.stringify({
+					id: response.id, // Added from backend response
 					email: userData.email,
-					role: userData.role,
+					firstName: response.firstName,
+					role: response.role,
 				})
 			);
 			return {
 				token: response.token,
-				user: { email: userData.email, role: userData.role },
+				user: {
+					id: response.id, // Include user ID
+					email: userData.email,
+					firstName: response.firstName,
+					role: response.role,
+				},
 			};
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
@@ -49,11 +56,21 @@ export const login = createAsyncThunk(
 			localStorage.setItem(
 				"user",
 				JSON.stringify({
+					id: response.id, // Added from backend response
 					email: userData.email,
-					// Role isn’t returned by backend yet—fetch or assume from token later
+					firstName: response.firstName,
+					role: response.role,
 				})
 			);
-			return { token: response.token, user: { email: userData.email } };
+			return {
+				token: response.token,
+				user: {
+					id: response.id, // Include user ID
+					email: userData.email,
+					firstName: response.firstName,
+					role: response.role,
+				},
+			};
 		} catch (error) {
 			return thunkAPI.rejectWithValue(error.message);
 		}
