@@ -22,6 +22,15 @@ const CreateGalleryForm = ({
 					required
 					className='w-full p-3 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500'
 				/>
+				<input
+					type='text'
+					name='skill'
+					placeholder='Skill (e.g., School Uniforms)'
+					value={formData.skill || ""} // Default to empty string
+					onChange={handleChange}
+					required
+					className='w-full p-3 border border-gray-300 rounded-md text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500'
+				/>
 				<textarea
 					name='description'
 					placeholder='Description'

@@ -14,6 +14,7 @@ import Services from "./components/Services";
 import TailorProfilePage from "./components/TailorProfile";
 import ChatPage from "./components/Chat";
 import SettingsPage from "./pages/SettingsPage";
+import GalleriesList from "./pages/GalleriesList"; // Added import
 import GalleryPage from "./pages/GalleryPage";
 import CreateGallery from "./pages/CreateGallery";
 import UploadImage from "./pages/UploadImage";
@@ -33,7 +34,10 @@ const App = () => {
 				<Route path='/chatpage' element={<ChatPage />} />
 				<Route path='/settings' element={<SettingsPage />} />
 				<Route path='/chat' element={<ChatPage />} />
-				<Route path='/gallery' element={<GalleryPage />} />
+				<Route path='/gallery' element={<GalleriesList />} />{" "}
+				{/* List of galleries */}
+				<Route path='/gallery/:id' element={<GalleryPage />} />{" "}
+				{/* Single gallery */}
 				<Route path='/create-gallery' element={<CreateGallery />} />
 				<Route path='/upload-image/:galleryId' element={<UploadImage />} />
 			</Routes>

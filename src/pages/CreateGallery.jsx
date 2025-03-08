@@ -15,7 +15,11 @@ const CreateGallery = () => {
 	);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const [formData, setFormData] = useState({ title: "", description: "" });
+	const [formData, setFormData] = useState({
+		title: "",
+		description: "",
+		skill: "",
+	}); // Updated
 
 	useEffect(() => {
 		if (user && user.role === "TAILOR") {
